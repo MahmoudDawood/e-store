@@ -18,9 +18,10 @@
 ## Contribution Guide
 1. Fork the repository to your own Github account
 2. Clone the project to your machine
-3. Create a branch locally with a descriptive name
-4. Commit changes to the branch 
-5. Push changes to your fork
-6. Open a PR in our repository
+3. Run `npm install`
+4. Create a branch locally with a descriptive name
+5. Commit changes to the branch 
+6. Push changes to your fork
+7. Open a PR in our repository
 
 
