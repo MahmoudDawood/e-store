@@ -2,12 +2,16 @@ import express from "express"
 import cartRouter from "./routes/cart.js"
 import productRouter from "./routes/product.js"
 import productsRouter from "./routes/products.js"
+import mongoose from "mongoose"
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
 app.use('/products', productsRouter)
 app.use('/product', productRouter)
 app.use('/cart', cartRouter)
+
+mongoose.connect('')
+.then(console.log("connected"));
 
 const port = 3000 || process.env.PORT
 
