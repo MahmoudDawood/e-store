@@ -2,12 +2,14 @@ import express from "express"
 import cartRouter from "./routes/cart.js"
 import productRouter from "./routes/product.js"
 import productsRouter from "./routes/products.js"
+import categoryRouter from "./routes/category.js"
 import mongoose from "mongoose"
 
 const app = express()
 app.use(express.urlencoded({ extended: true }))
+app.use('/products/:category/:id', productRouter)
+app.use('/products/:category', categoryRouter)
 app.use('/products', productsRouter)
-app.use('/product', productRouter)
 app.use('/cart', cartRouter)
 
 mongoose.connect('')
