@@ -6,11 +6,11 @@ import categoryRouter from "./routes/category.js"
 import mongoose from "mongoose"
 
 const app = express()
-app.use(express.urlencoded({ extended: true }))
-app.use('/products/:category/:id', productRouter)
-app.use('/products/:category', categoryRouter)
-app.use('/products', productsRouter)
-app.use('/cart', cartRouter)
+app.use(express.urlencoded({ extended: true }));
+app.use('/products/:category/:id', productRouter);
+app.use('/products/:category', categoryRouter);
+app.use('/products', productsRouter);
+app.use('/cart', cartRouter);
 
 mongoose.connect('')
 .then(console.log("connected"));

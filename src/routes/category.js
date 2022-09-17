@@ -6,4 +6,4 @@ categoryRouter.get('/', (req, res) => {
   res.send('Specific Category Page')
 })
 
-export default cartRouter
+export default categoryRouter
