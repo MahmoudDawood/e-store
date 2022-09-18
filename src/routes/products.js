@@ -24,6 +24,13 @@ productsRouter.get('/:par', (req, res) => {
   })
 })
 
+productsRouter.get('/search/:name', (req, res) => {
+  Product.find({name: {$regex:'.*'+req.params.name.toLocaleLowerCase()+'.*'}}).then(data=>{
+    res.send(data)
+  })
+})
+
+
 productsRouter.post('/',(req,res)=>{
   let newProduct = new Product({
       name:req.body.name,
