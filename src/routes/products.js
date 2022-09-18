@@ -24,6 +24,22 @@ productsRouter.get('/:par', (req, res) => {
   })
 })
 
+productsRouter.post('/',(req,res)=>{
+  let newProduct = new Product({
+      name:req.body.name,
+      image:req.body.image,
+      category:req.body.category,
+      description:req.body.description,
+      price:req.body.price,
+      stock:req.body.stock
+  });
+  newProduct.save().then((data)=>{
+      res.send("saved");
+      console.log("saved");
+  });
+});
+
+
 // productsRouter.get('/:par', (req, res) => {
 //   Product.findById(req.params.par).then(data=>{
 //     if(data==null)
