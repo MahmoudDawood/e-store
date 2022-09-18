@@ -9,4 +9,5 @@ var product = mongoose.Schema({
     stock:Number
 });
 
-module.exports = mongoose.model('Product',product);
+export default mongoose.model('Product',product);
+// module.exports = mongoose.model('Product',product);

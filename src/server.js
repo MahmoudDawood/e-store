@@ -1,18 +1,22 @@
 import express from "express"
+import mongoose from "mongoose"
+
+import Product from "./models/product.js"
 import cartRouter from "./routes/cart.js"
 import productRouter from "./routes/product.js"
 import productsRouter from "./routes/products.js"
 import categoryRouter from "./routes/category.js"
-import mongoose from "mongoose"
+
 
 const app = express()
 app.use(express.urlencoded({ extended: true }));
-app.use('/products/:category/:id', productRouter);
-app.use('/products/:category', categoryRouter);
+// app.use('/products/:category/:id', productRouter);
+// app.use('/products/:category', categoryRouter);
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
+app.use('/', productsRouter);
 
-mongoose.connect('')
+mongoose.connect('mongodb+srv://iti:12345678iti@cluster0.bwtz43s.mongodb.net/?retryWrites=true&w=majority')
 .then(console.log("connected"));
 
 const port = 3000 || process.env.PORT
