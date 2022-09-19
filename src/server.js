@@ -45,12 +45,24 @@ app.post('/user',(req,res)=>{
       name:req.body.name,
       password:req.body.password,
       email:req.body.email,
-      phone:req.body.email
+      phone:req.body.email,
+      cart:[]
   });
   console.log(newUser);
   newUser.save().then((data)=>{
       res.send("saved");
       console.log("saved");
+  });
+});
+
+app.put("/user/cart",(req,res) => {
+  User.findByIdAndUpdate({_id: req.body.id},{$push: {cart: req.body.cart}},(e,s) => {
+    if(e){
+      throw e;
+    }
+    else{
+      res.send("added");
+    }
   });
 });
 

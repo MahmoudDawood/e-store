@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
 
-var cart = mongoose.Schema({
-    productId:[Number]
-});
+// var cart = mongoose.Schema({
+//     productId:[Number]
+// });
 
-export default mongoose.model('Cart',cart);
+// export default mongoose.model('Cart',cart);
