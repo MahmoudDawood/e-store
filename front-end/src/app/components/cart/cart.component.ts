@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessangerService } from 'src/app/messanger.service';
 import { Product } from 'src/app/Models/product';
+import { ProductService } from 'src/app/product.service';
 import { TakefromcartService } from 'src/app/takefromcart.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { TakefromcartService } from 'src/app/takefromcart.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
+
 export class CartComponent implements OnInit {
 
   cartItems : any[] = [
@@ -16,44 +18,49 @@ export class CartComponent implements OnInit {
     // { id: 3, productId: 4, productName: 'Test 2', qty: 3, price: 100 },
     // { id: 4, productId: 2, productName: 'Test 4', qty: 2, price: 100 }
   ];
-  cartTotal = 0;
+  len!:number;
+  // cartTotal = 0;
   cartQty = 0;
-  constructor(private msg: MessangerService, private msg1: TakefromcartService) { }
+  constructor(private productService:ProductService) { }
 
   ngOnInit(): void {
-    this.msg.getMsg().subscribe((product: any) => { // ANY IS JUST FOR SYNTAX CORRECTION IT FOLLOWS THE PRODUCT MODEL
-      this.addProductToCart(product);
-      this.msg1.sendMsg(this.cartQty);
+    // this.msg.getMsg().subscribe((product: any) => { // ANY IS JUST FOR SYNTAX CORRECTION IT FOLLOWS THE PRODUCT MODEL
+    //   this.addProductToCart(product);
+    //   this.msg1.sendMsg(this.cartQty);
+    // })
+    this.productService.getCart().subscribe(data=>{
+      this.cartItems=data;
+      this.len=data.length;
     })
   }
 
-  addProductToCart(product: Product) {
+  // addProductToCart(product: Product) {
 
-    let productExists = false
+  //   let productExists = false
 
-    for (let i in this.cartItems) {
-      if (this.cartItems[i].productId === product._id) {
-        this.cartQty++
-        this.cartItems[i].qty++
-        productExists = true
-        break;
-      }
-    }
+  //   for (let i in this.cartItems) {
+  //     if (this.cartItems[i].productId === product._id) {
+  //       this.cartQty++
+  //       this.cartItems[i].qty++
+  //       productExists = true
+  //       break;
+  //     }
+  //   }
 
-    if (!productExists) {
-      this.cartQty++
-      this.cartItems.push({
-        productId: product._id,
-        productName: product.name,
-        qty: 1,
-        price: product.price
-      })
-    }
-    this.cartTotal = 0
-    this.cartItems.forEach(item => {
-      this.cartTotal += (item.qty * item.price)
-    })
-  }
+  //   if (!productExists) {
+  //     this.cartQty++
+  //     this.cartItems.push({
+  //       productId: product._id,
+  //       productName: product.name,
+  //       qty: 1,
+  //       price: product.price
+  //     })
+  //   }
+  //   this.cartTotal = 0
+  //   this.cartItems.forEach(item => {
+  //     this.cartTotal += (item.qty * item.price)
+  //   })
+  // }
 
 
 }

@@ -45,17 +45,29 @@ export class ProductService {
   // products:Product[] = [
   //   new Product(2, "Bag", "Bags", "This is a cool bag", 3247, 23)
   // ]
-  category:string = '';
-  subject = new Subject()
+
+  category:string="";
+  user!:any;
+  userId="6328daa69f53157508c06efd";
+  subject = new Subject();
   name!:string;
   nameSubject = new Subject();
   constructor(private Http: HttpClient) { 
     this.subject.next(this.category)
   }
 
+  addToCart(id:any):void{
+    console.log(id);
+    this.Http.post(`http://localhost:3000/cart/${this.userId}/${id}`, id);
+  }
+
   changeCategory(cate:string){
     this.category = cate;
     this.subject.next(this.category)
+  }
+
+  getCart():Observable<any>{
+    return this.Http.get(`http://localhost:3000/cart/${this.userId}`)
   }
 
   observe(){

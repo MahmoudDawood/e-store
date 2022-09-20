@@ -1,15 +1,16 @@
 <div class="container my-5">
     <div class="row border">
-        <div class="col-md-6">
-            <div class="">
-                <img class="img-fluid" [src]="product.image"/>
+        <div class="col-md-7 border-end">
+            <div class="text-center  my-2">
+                <img class="p-2 w-75 img-fluid" [src]="product.image"/>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="">
+        <div class="col-md-5">
+            <div class="p-3">
                 <p class="h2"> Name : <span class="h3 text-muted">{{product.name}}</span></p>
                 <p class="my-2 h2"> Descriptoin : <span class="h3 text-muted">{{product.description}}</span></p>
                 <p class="h2"> Category : <span class="h3 text-muted">{{product.category}}</span></p>
+                <p class="h2"> Items avaliable : <span class="h3 text-muted">{{product.stock}}</span></p>
                 <p class="h2"> Price : <span class="h3 text-muted">{{product.price}} &pound;</span></p>
             </div>
         </div>

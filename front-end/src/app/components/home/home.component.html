@@ -50,13 +50,13 @@
   </div>
   <!-- /SECTION -->
 <!-- l7d hena tmm -->
-<div class="col-md-12">
+<div class="container my-5">
     <div class="row">
       <div class="col-md-3 col-sm-6" *ngFor="let p of products">
         <div class="card my-2">
           <div class="text-center">
             <a [routerLink]="['/product',p._id]">
-              <img [src]="p.image" [alt]="p.name" class="img-fluid w-75 card-img-top" style="height: 300px;"/>
+              <img [src]="p.image" [alt]="p.name" class="img-fluid w-75 card-img-top"/>
             </a>
           </div>
           <div class="card-header">
@@ -72,11 +72,10 @@
           <div class="row d-flex justify-content-center border-primary my-3">
             <div class="col-md-6 ">
               <button class="btn btn-outline-primary btn-sm btn-block"
-                      [class.disabled]="p.stock < 1"
-                      [class.btn-outline-danger]="p.stock < 1"
-                      (click)="handleAddToCart(p)" 
-                      [disabled]="p.stock < 1"
-                      >
+                [class.disabled]="p.stock < 1"
+                [class.btn-outline-danger]="p.stock < 1"
+                [disabled]="p.stock < 1"
+                (click)="addToCart(p._id)">
                 {{ p.stock < 1 ? "NO STOCK" : "Add To Cart"}}
               </button>
             </div>
@@ -85,7 +84,4 @@
       </div>
     </div>
   </div>
-<!-- /container -->
-<div style="width: 60%; margin: auto; margin-top: 10px; margin-bottom: 10px;">
-  <app-cart ></app-cart>
-</div>
+  <!-- /container -->

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { MessangerService } from 'src/app/messanger.service';
 import { Product } from 'src/app/Models/product';
 import { ProductService } from 'src/app/product.service';
@@ -25,10 +26,8 @@ export class HomeComponent implements OnInit {
     this.productService.observeName().subscribe((name:any) => {this.productService.search(name).subscribe(data =>{ this.products = data; console.log(data)})});
 
   }
-
-  handleAddToCart(product:Product){
-    this.msg.sendMsg(product);
-    console.log(product);
-    
+  addToCart(id:number):void{
+    this.productService.addToCart(id);
   }
+
 }
