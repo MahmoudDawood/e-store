@@ -27,7 +27,9 @@ export class HomeComponent implements OnInit {
 
   }
   addToCart(id:number):void{
-    this.productService.addToCart(id);
+    this.productService.addToCart(id).subscribe((data) => {console.log(data);
+    });
+    this.productService.changelen();
   }
 
 }

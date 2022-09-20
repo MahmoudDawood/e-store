@@ -8,10 +8,19 @@ import { ProductService } from 'src/app/product.service';
 })
 export class HeaderComponent implements OnInit {
   _name!:string;
+  len!:number;
   constructor(private product: ProductService) { }
 
   ngOnInit(): void {
-   
+    this.product.observelen().subscribe(data => {
+      this.product.getCart().subscribe(data=>{
+        this.len=data.length;
+      })
+    });
+    this.product.getCart().subscribe(data=>{
+      this.len=data.length;
+    })
+    
   }
   filterByCategory(event:Event):void{
     this.product.category = (event.target as HTMLInputElement).value;

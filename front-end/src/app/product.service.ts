@@ -52,13 +52,21 @@ export class ProductService {
   subject = new Subject();
   name!:string;
   nameSubject = new Subject();
+  lenSubject = new Subject();
+  len:number = 0;
   constructor(private Http: HttpClient) { 
     this.subject.next(this.category)
   }
 
-  addToCart(id:any):void{
-    console.log(id);
-    this.Http.post(`http://localhost:3000/cart/${this.userId}/${id}`, id);
+  addToCart(id:any):Observable<any>{
+    // console.log(id);
+    // return this.Http.post(`http://localhost:3000/cart/${this.userId}/${id}`, id);
+    const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(id);
+    console.log(body)
+    console.log(`http://localhost:3000/cart/${this.userId}/${id}`);
+    
+    return this.Http.post(`http://localhost:3000/cart/${this.userId}/${id}`, body,{'headers':headers})
   }
 
   changeCategory(cate:string){
@@ -66,12 +74,27 @@ export class ProductService {
     this.subject.next(this.category)
   }
 
+  changelen(){
+    console.log(this.len);
+    
+    this.lenSubject.next(this.len++);
+  }
+
   getCart():Observable<any>{
+    console.log(this.userId);
     return this.Http.get(`http://localhost:3000/cart/${this.userId}`)
+  }
+
+  deleteFromCart(id:string):Observable<any>{
+    return this.Http.delete(`http://localhost:3000/cart/${id}/${this.userId}`)
   }
 
   observe(){
     return this.subject.asObservable();
+  }
+
+  observelen(){
+    return this.lenSubject.asObservable();
   }
 
   changeName(name:string){

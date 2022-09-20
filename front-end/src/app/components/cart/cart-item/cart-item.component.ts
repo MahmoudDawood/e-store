@@ -15,5 +15,12 @@ export class CartItemComponent implements OnInit {
     this.productService.getSingleProduct(this.id).subscribe(data=>{
       this.p=data;
     });
+
   }
+
+  deleteItem(id:string): void {
+    this.productService.deleteFromCart(id).subscribe(data => console.log("removed"));
+    location.reload();
+  }
+
 }

@@ -1,18 +1,21 @@
-<div class="col-md-3 col-sm-6">
-    <div class="card my-2">
-      <div class="text-center">
-        <a [routerLink]="['/product',p._id]">
-          <img [src]="p.image" [alt]="p.name" class="img-fluid w-75 card-img-top"/>
-        </a>
-      </div>
-      <div class="card-header">
-        <div class="card-title">
-          <p>{{p.name | titlecase}}</p>
+<div class="col-md-3 col-sm-6"style="margin: auto; width: 80%;">
+    <div class="card my-2" style="height: 250px;">
+      <div class="row" style="height: 100%;">
+        <div class="col-3">
+          <img [src]="p.image" [alt]="p.name" class="img-fluid w-75 card-img-top" style="height: 100%; width:100%"/>
+        </div> 
+        <div class="col">
+          <div class="card-header">
+            <div class="card-title" style="display: block; overflow: auto;">
+              <li style="width: 50%; float: left;">{{p.name | titlecase}} </li>
+              <a><li style="text-align: right; width: 50%; float: right;" (click)="deleteItem(p._id)">X</li></a>
+            </div>
+          </div>
+          <div class="card-body">
+            <h6>{{p.description.substr(0, 40)}} ....</h6>
+            <p class="lead">{{p.price | currency:'EGP'}}</p>
+          </div>    
         </div>
-      </div>
-      <div class="card-body">
-        <h6>{{p.description.substr(0, 40)}} ....</h6>
-        <p class="lead">{{p.price | currency:'EGP'}}</p>
       </div>
     </div>
   </div>
