@@ -35,9 +35,7 @@ mongoose.connect('mongodb+srv://iti:12345678iti@cluster0.bwtz43s.mongodb.net/?re
 
 const port = 3000 || process.env.PORT
 
-app.get('/', (req, res) => {
-  res.send('Welcome to our E-Store')
-})
+
 
 
 app.post('/user',(req,res)=>{
@@ -55,18 +53,24 @@ app.post('/user',(req,res)=>{
   });
 });
 
-app.put("/user/cart",(req,res) => {
-  User.findByIdAndUpdate({_id: req.body.id},{$push: {cart: req.body.cart}},(e,s) => {
+app.post("/cart/:id/:pid",(req,res) => {
+  console.log("adding...");
+  User.findByIdAndUpdate({_id: req.params.id},{$push: {cart: req.params.pid}},(e,s) => {
     if(e){
       throw e;
     }
     else{
+      console.log("added");
       res.send("added");
     }
   });
 });
 
-
+app.get("/cart/:id",(req,res) => {
+  User.findById({_id: req.params.id}).then(data => {
+    res.send(data.cart);
+  })
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`)
