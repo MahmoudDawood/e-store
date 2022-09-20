@@ -84,7 +84,7 @@ app.delete("/cart/:id/:uid",(req,res) => {
         res.send("added");
       }
     }
-  );  
+  );
 });
 
 
