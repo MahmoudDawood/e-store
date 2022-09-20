@@ -5,7 +5,7 @@ var user = mongoose.Schema({
     password:String,
     email:String,
     phone:String,
-    cart:[Number]
+    cart:[String]
 });
 
 export default mongoose.model('User',user);
